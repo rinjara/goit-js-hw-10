@@ -40,7 +40,11 @@ function onInputEnter(event) {
         refs.info.innerHTML = countryCard;
       }
     })
-    .catch(error => Notify.warning(`Oops, there is no country with that name`));
+    .catch(error => {
+      refs.info.innerHTML = '';
+      refs.list.innerHTML = '';
+      return Notify.warning(`Oops, there is no country with that name`);
+    });
 }
 
 refs.input.addEventListener('input', debounce(onInputEnter, DEBOUNCE_DELAY));
